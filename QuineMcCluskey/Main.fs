@@ -49,7 +49,7 @@ let summarize (source1: Row) (source2: Row) =
                     x
         } |> Seq.toList)
         
-        let newTerm = source1.label |> Seq.append source2.label |> Seq.sort |> Seq.toList
+        let newTerm = source1.label @ source2.label |> Seq.sort |> Seq.toList
         
         {data = cells; label = newTerm; isEnd = false }
 
@@ -70,7 +70,7 @@ let nextStep(hammingTable: (int*Row) seq) =
                     if flag then
                         yield summarize row comparison
             else
-                yield {row with isEnd = true }
+                yield { row with isEnd = true }
     }
     |> Seq.distinctBy (fun x -> x.data)
 
@@ -88,7 +88,7 @@ let rec calcMainTerm (table: Row seq) =
         bitTable
         |> Seq.sortBy fst
 
-    let next = nextStep hammingTable
+    let next = nextStep hammingTable |> Seq.toList
     
     if next |> Seq.forall (fun i -> i.isEnd) then
         next
