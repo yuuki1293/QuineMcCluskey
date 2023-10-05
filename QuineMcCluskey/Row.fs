@@ -20,4 +20,4 @@ type Row =
             |> Seq.map (fun i -> i.ToString())
             |> String.concat ""
         
-        $"{data} {this.label}"
+        $"{data}" + " " + $"%A{this.label}"
