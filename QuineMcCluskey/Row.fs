@@ -3,8 +3,10 @@
 open System
 open Cell
 
+type Label = (string * bool) list
+
 type Row =
-    { data: Cell list; label: (int * bool) list; isEnd: bool }
+    { data: Cell list; label: Label; isEnd: bool }
     static member from raw =
         raw
         |> Seq.map (function

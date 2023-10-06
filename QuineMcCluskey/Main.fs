@@ -76,7 +76,7 @@ let private nextStep(hammingTable: (int*Row) seq) =
 
 let genRow2 (digit: int) (num: int, dontCare: bool) =
     let data = Convert.ToString(num, 2).PadLeft(digit, '0') |> Row.from
-    {data = data; label = [num, dontCare]; isEnd = false}
+    {data = data; label = [string num, dontCare]; isEnd = false}
 
 let genRow (digit: int) (num: int) = genRow2 digit (num, false)
 
@@ -103,8 +103,9 @@ let private getMinTerms (table: Row seq) =
     |> Seq.concat
     |> Seq.filter (fun (_, dontCare) -> not dontCare)
     |> Seq.distinct
+    |> Seq.toList
 
-let private primeImplicant (minTerms: (int * bool) seq) (table: Row seq) =
+let private primeImplicant (minTerms: Label) (table: Row seq) =
     seq {
         for i in minTerms do
             let satisfyTerm =
@@ -117,7 +118,7 @@ let private primeImplicant (minTerms: (int * bool) seq) (table: Row seq) =
     |> Seq.distinct
     |> Seq.toList
     
-let private remainingTerm (minTerms: (int * bool) seq) (table: Row seq) =
+let private remainingTerm (minTerms: Label) (table: Row seq) =
     table
     |> Seq.map (fun row -> row.label)
     |> Seq.fold (fun terms label -> terms |> Seq.except label) minTerms
@@ -134,7 +135,7 @@ let rec private comb: int * 'a list -> 'a list list =
                 yield x::y
         } |> Seq.toList |> (@) (comb (n, xs))
 
-let private findSimplest (terms: (int * bool) list) (implicants: Row list) =
+let private findSimplest (terms: Label) (implicants: Row list) =
     if terms.Length = 0 then
         []
     else
