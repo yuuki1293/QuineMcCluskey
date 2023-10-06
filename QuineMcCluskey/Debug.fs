@@ -19,4 +19,4 @@ let printResult(result: Row seq) =
     |> Seq.map (fun i -> i.ToString())
     |> Seq.iter (fun i -> printfn $"%s{i}")
     
-printResult (wiki.Force())
+printResult (resultA2.Force())

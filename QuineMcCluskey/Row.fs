@@ -19,8 +19,12 @@ type Row =
             this.data
             |> Seq.map (fun i -> i.ToString())
             |> String.concat ""
+            
+        let label =
+            this.label
+            |> List.map fst
         
-        $"{data}" + " " + $"%A{this.label}"
+        sprintf $"{data} %A{label}"
         
     static member or_ (l, r: Row) =
         l @ r.label
