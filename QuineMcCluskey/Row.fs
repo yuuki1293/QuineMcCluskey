@@ -4,7 +4,7 @@ open System
 open Cell
 
 type Row =
-    { data: Cell list; label: int list; isEnd: bool }
+    { data: Cell list; label: (int * bool) list; isEnd: bool }
     static member from raw =
         raw
         |> Seq.map (function
@@ -21,3 +21,9 @@ type Row =
             |> String.concat ""
         
         $"{data}" + " " + $"%A{this.label}"
+        
+    static member or_ (l, r: Row) =
+        l @ r.label
+        |> Seq.distinct
+        |> Seq.sort
+        |> Seq.toList

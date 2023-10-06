@@ -74,9 +74,11 @@ let nextStep(hammingTable: (int*Row) seq) =
     }
     |> Seq.distinctBy (fun x -> x.data)
 
-let genRow (digit: int) (num: int) =
+let genRow2 (digit: int) (num: int, dontCare: bool) =
     let data = Convert.ToString(num, 2).PadLeft(digit, '0') |> Row.from
-    {data = data; label = [num]; isEnd = false}
+    {data = data; label = [num, dontCare]; isEnd = false}
+
+let genRow (digit: int) (num: int) = genRow2 digit (num, false)
 
 let rec calcMainTerm (table: Row seq) =
     let bitTable = seq {
@@ -94,3 +96,79 @@ let rec calcMainTerm (table: Row seq) =
         next
     else
         calcMainTerm next
+
+let getMinTerms (table: Row seq) =
+    table
+    |> Seq.map (fun i -> i.label)
+    |> Seq.concat
+    |> Seq.filter (fun (_, dontCare) -> not dontCare)
+    |> Seq.distinct
+
+let primeImplicant (minTerms: (int * bool) seq) (table: Row seq) =
+    seq {
+        for i in minTerms do
+            let satisfyTerm =
+                table
+                |> Seq.filter (fun cell -> cell.label |> Seq.contains i)
+            
+            if satisfyTerm |> Seq.length = 1 then
+                yield satisfyTerm |> Seq.head
+    }
+    |> Seq.distinct
+    |> Seq.toList
+    
+let remainingTerm (minTerms: (int * bool) seq) (table: Row seq) =
+    table
+    |> Seq.map (fun row -> row.label)
+    |> Seq.fold (fun terms label -> terms |> Seq.except label) minTerms
+    |> Seq.sort
+    |> Seq.toList
+
+let rec comb: int * 'a list -> 'a list list =
+    function
+    | 0, _ -> [[]]
+    | _, [] -> []
+    | n, x::xs ->
+        seq {
+            for y in comb (n-1, xs) do
+                yield x::y
+        } |> Seq.toList |> (@) (comb (n, xs))
+
+let findSimplest (terms: (int * bool) list) (implicants: Row list) =
+    seq {
+        for termCount in [1..terms |> Seq.length] do
+            let combs = comb (termCount, implicants)
+            let simplest =
+                combs
+                |> Seq.tryFind (fun rows ->
+                    let sum = Seq.fold (fun acc row -> Row.or_ (acc, row)) [] rows
+                    terms |> List.forall (fun term -> sum |> List.contains term))
+                
+            match simplest with
+            | None -> ()
+            | Some value -> yield value
+    }
+    |> Seq.head
+    |> Seq.toList
+
+let calcSimplest (table: Row seq) =
+    let minTerms = getMinTerms table
+    let primeImplicants = primeImplicant minTerms table
+    
+    let otherImplicants =
+        table
+        |> Seq.except primeImplicants
+        |> Seq.toList
+        
+    let remainingTerms =
+        remainingTerm minTerms primeImplicants
+    
+    let simplestRemainingTerms =
+        findSimplest remainingTerms otherImplicants
+    
+    primeImplicants @ simplestRemainingTerms
+    |> List.sort
+
+let calc (table: Row seq) =
+    calcMainTerm table
+    |> calcSimplest
