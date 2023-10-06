@@ -4,17 +4,17 @@ open System
 open Cell
 open Row
 
-let countTrue (row: Row) =
+let private countTrue (row: Row) =
     row.data
     |> Seq.filter (fun i -> i = True)
     |> Seq.length
 
-let isBoth (source1: Cell, source2: Cell) =
+let private isBoth (source1: Cell, source2: Cell) =
     if source1 = Both || source2 = Both then
         false
     else source1 <> source2
 
-let canSummarize (source1: Row) (source2: Row) =
+let private canSummarize (source1: Row) (source2: Row) =
     let isSameBoth =
         (source1.data, source2.data)
         ||> Seq.forall2
@@ -33,7 +33,7 @@ let canSummarize (source1: Row) (source2: Row) =
         
     isSameBoth && diffCount = 1
 
-let summarize (source1: Row) (source2: Row) =
+let private summarize (source1: Row) (source2: Row) =
     let zipped =
         (source1.data, source2.data)
         ||> Seq.zip
@@ -53,7 +53,7 @@ let summarize (source1: Row) (source2: Row) =
         
         {data = cells; label = newTerm; isEnd = false }
 
-let nextStep(hammingTable: (int*Row) seq) =
+let private nextStep(hammingTable: (int*Row) seq) =
     seq {
         for hamming_i, row in hammingTable do
             let summarizeList = (seq {
@@ -97,14 +97,14 @@ let rec calcMainTerm (table: Row seq) =
     else
         calcMainTerm next
 
-let getMinTerms (table: Row seq) =
+let private getMinTerms (table: Row seq) =
     table
     |> Seq.map (fun i -> i.label)
     |> Seq.concat
     |> Seq.filter (fun (_, dontCare) -> not dontCare)
     |> Seq.distinct
 
-let primeImplicant (minTerms: (int * bool) seq) (table: Row seq) =
+let private primeImplicant (minTerms: (int * bool) seq) (table: Row seq) =
     seq {
         for i in minTerms do
             let satisfyTerm =
@@ -117,14 +117,14 @@ let primeImplicant (minTerms: (int * bool) seq) (table: Row seq) =
     |> Seq.distinct
     |> Seq.toList
     
-let remainingTerm (minTerms: (int * bool) seq) (table: Row seq) =
+let private remainingTerm (minTerms: (int * bool) seq) (table: Row seq) =
     table
     |> Seq.map (fun row -> row.label)
     |> Seq.fold (fun terms label -> terms |> Seq.except label) minTerms
     |> Seq.sort
     |> Seq.toList
 
-let rec comb: int * 'a list -> 'a list list =
+let rec private comb: int * 'a list -> 'a list list =
     function
     | 0, _ -> [[]]
     | _, [] -> []
@@ -134,7 +134,7 @@ let rec comb: int * 'a list -> 'a list list =
                 yield x::y
         } |> Seq.toList |> (@) (comb (n, xs))
 
-let findSimplest (terms: (int * bool) list) (implicants: Row list) =
+let private findSimplest (terms: (int * bool) list) (implicants: Row list) =
     if terms.Length = 0 then
         []
     else
