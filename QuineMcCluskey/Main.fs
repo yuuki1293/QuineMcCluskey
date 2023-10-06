@@ -135,21 +135,24 @@ let rec comb: int * 'a list -> 'a list list =
         } |> Seq.toList |> (@) (comb (n, xs))
 
 let findSimplest (terms: (int * bool) list) (implicants: Row list) =
-    seq {
-        for termCount in [1..terms |> Seq.length] do
-            let combs = comb (termCount, implicants)
-            let simplest =
-                combs
-                |> Seq.tryFind (fun rows ->
-                    let sum = Seq.fold (fun acc row -> Row.or_ (acc, row)) [] rows
-                    terms |> List.forall (fun term -> sum |> List.contains term))
-                
-            match simplest with
-            | None -> ()
-            | Some value -> yield value
-    }
-    |> Seq.head
-    |> Seq.toList
+    if terms.Length = 0 then
+        []
+    else
+        seq {
+            for termCount in [1..terms |> Seq.length] do
+                let combs = comb (termCount, implicants)
+                let simplest =
+                    combs
+                    |> List.tryFind (fun rows ->
+                        let sum = Seq.fold (fun acc row -> Row.or_ (acc, row)) [] rows
+                        terms |> List.forall (fun term -> sum |> List.contains term))
+                    
+                match simplest with
+                | None -> ()
+                | Some value -> yield value
+        }
+        |> Seq.head
+        |> Seq.toList
 
 let calcSimplest (table: Row seq) =
     let minTerms = getMinTerms table
