@@ -75,7 +75,7 @@ let private nextStep(hammingTable: (int*Row) seq) =
     |> Seq.distinctBy (fun x -> x.data)
 
 let genRow2 (digit: int) (num: int, dontCare: bool) =
-    let data = Convert.ToString(num, 2).PadLeft(digit, '0') |> Row.from
+    let data = Convert.ToString(num, 2).PadLeft(digit, '0') |> Cell.from digit
     {data = data; label = [string num, dontCare]; isEnd = false}
 
 let genRow (digit: int) (num: int) = genRow2 digit (num, false)

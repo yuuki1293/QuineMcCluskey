@@ -10,6 +10,7 @@
         <Compile Include="Row.fs" />
         <Compile Include="Main.fs" />
         <Compile Include="Debug.fs" />
+        <Compile Include="Table.fs" />
     </ItemGroup>
 
 </Project>
