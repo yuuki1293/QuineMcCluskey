@@ -21,13 +21,15 @@ type Table =
     /// </code>
     /// </example>
     static member from(str: string) : Result<Row list, string> =
-        let line = str.Split("\n")
+        let line = str.Split("\r\n")
 
         let digit = line[0] |> int
 
         seq {
             for row in line |> Seq.tail do
                 if row |> String.startsWith "//" || row = "" then
+                    ()
+                else
                     match row.Split(" ") |> Array.toList with
                     | [ e ] -> yield Error($"Invalid syntax. \"{e}\"")
                     | [ labelName; num; "*" ] ->

@@ -1,10 +1,30 @@
 ﻿module Debug
 
+open System
 open Main
 open Row
+open Table
 
 let wiki =
-    lazy(calc ([4,false;8,false;9,true;10,false;11,false;12,false;14,true;15,false] |> Seq.map (genRow2 6)))
+    lazy(calc ([4,false;8,false;9,true;10,false;11,false;12,false;14,true;15,false] |> Seq.map (genRow2 4)))
+
+let wiki2table =
+    """4
+4 0100
+8 1000
+9 1001 *
+10 1010
+11 1011
+12 1100
+14 1110 *
+15 1111
+""" |> Table.from
+
+let wiki2 =
+    match wiki2table with
+    | Ok resultValue -> lazy (calc resultValue)
+    | Error errorValue -> raise (Exception(errorValue))
+    
 
 let resultB1 =
       lazy( calc ([ 51..63 ]
@@ -29,9 +49,9 @@ let resultC0 =
 let resultD0 =
     lazy(calc ([1;3;4;6;9;11;14;16;19;21;22;24;26;27;29;32;34;37;39;40;42;44;45;47;49;50;52;55;57;60;62;63] |> Seq.map (genRow 6)))
 
-let printResult(result: Row seq) =
+let printResult(result: Row list) =
     result
     |> Seq.map (fun i -> i.ToString())
     |> Seq.iter (fun i -> printfn $"%s{i}")
     
-printResult (resultD0.Force())
+printResult (wiki2.Force())
