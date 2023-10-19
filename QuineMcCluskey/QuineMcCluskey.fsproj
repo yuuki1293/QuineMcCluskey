@@ -13,4 +13,8 @@
         <Compile Include="Table.fs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FSharpPlus" Version="1.5.0" />
+    </ItemGroup>
+
 </Project>

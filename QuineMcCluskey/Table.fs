@@ -1,38 +1,56 @@
 ﻿module Table
 
+open FSharpPlus
 open Cell
 open Row
 
 type Table =
-    /// digit
+    /// <summary>Create Row seq from String</summary>
+    /// <param name="str">input string</param>
+    /// <returns>Row sequence</returns>
+    /// <example>
+    /// <code>
+    /// <c>
+    /// """6
     /// label1 000000
     /// label2 001000 *
-    static member from(str: string) =
-        let splitted = str.Split("\n")
-        
-        if splitted.Length <> 3 then
+    /// """
+    /// |> Table.from
+    /// </c>
+    /// </code>
+    /// </example>
+    static member from(str: string) : Result<Row, string> =
+        let line = str.Split("\n")
+
+        if line.Length <> 3 then
             Error("Invalid syntax.")
         else
-            let digit = splitted.[0] |> int
+            let digit = line[0] |> int
+
             seq {
-                for row in splitted |> Seq.tail do
-                    match str.Split(" ") |> Array.toList with
-                    | labelName::num::"*"::[_] ->
-                        let data =
-                            num
-                            |> Cell.from digit
-                        let label =
-                            [labelName, true]
-                            
-                        yield {data = data; label = label; isEnd = false}
-                    | labelName::num::[_] ->
-                        let data =
-                            num
-                            |> Cell.from digit
-                        let label =
-                            [labelName, false]
-                            
-                        yield {data = data; label = label; isEnd = false}
-                    | _ -> ()
+                for row in line |> Seq.tail do
+                    if row |> String.startsWith "//" || row = "" then
+                        match row.Split(" ") |> Array.toList with
+                        | [ _ ] -> yield Error("Invalid syntax.")
+                        | [ labelName; num; "*" ] ->
+                            let data = num |> Cell.from digit
+                            let label = [ labelName, true ]
+
+                            yield
+                                { data = data
+                                  label = label
+                                  isEnd = false }
+                                |> Ok
+                        | [ labelName; num ] ->
+                            let data = num |> Cell.from digit
+                            let label = [ labelName, false ]
+
+                            yield
+                                { data = data
+                                  label = label
+                                  isEnd = false }
+                                |> Ok
+                        | _ -> ()
             }
-            |> Ok
+            |> Seq.toList
+            |> sequence
