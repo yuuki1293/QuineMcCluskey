@@ -19,7 +19,7 @@ type Table =
     /// </c>
     /// </code>
     /// </example>
-    static member from(str: string) : Result<Row, string> =
+    static member from(str: string) : Result<Row list, string> =
         let line = str.Split("\n")
 
         if line.Length <> 3 then

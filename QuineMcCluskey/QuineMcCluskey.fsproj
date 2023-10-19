@@ -9,8 +9,8 @@
         <Compile Include="Cell.fs" />
         <Compile Include="Row.fs" />
         <Compile Include="Main.fs" />
-        <Compile Include="Debug.fs" />
         <Compile Include="Table.fs" />
+        <Compile Include="Debug.fs" />
     </ItemGroup>
 
     <ItemGroup>
