@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "QuineMcCluskey", "QuineMcCluskey\QuineMcCluskey.fsproj", "{80AA2E68-53C1-47C4-A0CE-DE5C2967BD79}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LogicalTable", "LogicalTable\LogicalTable\LogicalTable.fsproj", "{27C3A025-CCB3-444A-BE8F-B7A46ED18F63}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LogicalTable.Android", "LogicalTable\LogicalTable.Android\LogicalTable.Android.fsproj", "{BDDFE262-019E-4579-821B-D01A644E4791}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LogicalTable.Desktop", "LogicalTable\LogicalTable.Desktop\LogicalTable.Desktop.fsproj", "{F18CC513-4055-4936-80B9-C55EE30B83E9}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LogicalTable.iOS", "LogicalTable\LogicalTable.iOS\LogicalTable.iOS.fsproj", "{9238198D-7622-4F99-84B5-9C82F4F4589A}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LogicalTable.Browser", "LogicalTable\LogicalTable.Browser\LogicalTable.Browser.fsproj", "{334CFA47-E115-427A-A23F-817A119C47DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +22,25 @@ Global
 		{80AA2E68-53C1-47C4-A0CE-DE5C2967BD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80AA2E68-53C1-47C4-A0CE-DE5C2967BD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80AA2E68-53C1-47C4-A0CE-DE5C2967BD79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C3A025-CCB3-444A-BE8F-B7A46ED18F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C3A025-CCB3-444A-BE8F-B7A46ED18F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C3A025-CCB3-444A-BE8F-B7A46ED18F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C3A025-CCB3-444A-BE8F-B7A46ED18F63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDDFE262-019E-4579-821B-D01A644E4791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDDFE262-019E-4579-821B-D01A644E4791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDDFE262-019E-4579-821B-D01A644E4791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDDFE262-019E-4579-821B-D01A644E4791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F18CC513-4055-4936-80B9-C55EE30B83E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F18CC513-4055-4936-80B9-C55EE30B83E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F18CC513-4055-4936-80B9-C55EE30B83E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F18CC513-4055-4936-80B9-C55EE30B83E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9238198D-7622-4F99-84B5-9C82F4F4589A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9238198D-7622-4F99-84B5-9C82F4F4589A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9238198D-7622-4F99-84B5-9C82F4F4589A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9238198D-7622-4F99-84B5-9C82F4F4589A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334CFA47-E115-427A-A23F-817A119C47DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334CFA47-E115-427A-A23F-817A119C47DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334CFA47-E115-427A-A23F-817A119C47DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334CFA47-E115-427A-A23F-817A119C47DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
