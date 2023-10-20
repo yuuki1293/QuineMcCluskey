@@ -3,6 +3,7 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="LogicalTable/LogicalTable/App.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
         <entry key="UI/App.axaml" value="UI/UI.fsproj" />
         <entry key="UI/MainWindow.axaml" value="UI/UI.fsproj" />
       </map>
