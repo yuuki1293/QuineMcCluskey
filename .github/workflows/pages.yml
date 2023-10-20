@@ -42,8 +42,8 @@ jobs:
       - name: GZip Compress Output (wasm)
         run: DotNetCompress -d LogicalTable/LogicalTable.Browser/bin/Release/net7.0/browser-wasm/AppBundle/ -p '*.wasm' --format gz --threads 4
 
-      - name: Change base-tag in index.html from / to XamlPlayground
-        run: sed -i 's/<base href="\/" \/>/<base href="\/XamlPlayground\/" \/>/g' LogicalTable/LogicalTable.Browser/bin/Release/net7.0/browser-wasm/AppBundle/index.html
+      - name: Change base-tag in index.html from / to QuineMcCluskey
+        run: sed -i 's/<base href="\/" \/>/<base href="\/QuineMcCluskey\/" \/>/g' LogicalTable/LogicalTable.Browser/bin/Release/net7.0/browser-wasm/AppBundle/index.html
 
       - name: copy index.html to 404.html
         run: cp LogicalTable/LogicalTable.Browser/bin/Release/net7.0/browser-wasm/AppBundle/index.html LogicalTable/LogicalTable.Browser/bin/Release/net7.0/browser-wasm/AppBundle/404.html
