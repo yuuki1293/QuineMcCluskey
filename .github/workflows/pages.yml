@@ -55,5 +55,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
+          BRANCH: pages
           FOLDER: src/XamlPlayground.Wasm/bin/Release/net7.0/browser-wasm/AppBundle
