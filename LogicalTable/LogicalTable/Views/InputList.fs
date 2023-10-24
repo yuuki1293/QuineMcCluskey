@@ -11,6 +11,8 @@ type MainView() as this =
     let definition n =
         Seq.init n (fun _ -> "20") |> String.concat ","
 
+    let getBit i n digit = ($"%B{n}".PadLeft (digit, '0')).[i]
+
     do this.InitializeComponent()
 
     member private this.InitializeComponent() = AvaloniaXamlLoader.Load(this)
@@ -28,13 +30,14 @@ type MainView() as this =
 
             grid.ColumnDefinitions <- ColumnDefinitions(definition column)
             grid.RowDefinitions <- RowDefinitions(definition row)
-            
+
             grid.Children.RemoveAll grid.Children
 
             for r in 0 .. row - 1 do
                 for c in 0 .. column - 1 do
                     let label = Label()
-                    label.Content <- r * c
+                    let bit = getBit c r n
+                    label.Content <- bit
                     label.SetValue(Grid.RowProperty, r) |> ignore
                     label.SetValue(Grid.ColumnProperty, c) |> ignore
                     grid.Children.Add label
