@@ -18,7 +18,7 @@ type MainView() as this =
     member private this.InitializeComponent() = AvaloniaXamlLoader.Load(this)
 
     member this.Update(_: obj, _: RangeBaseValueChangedEventArgs) =
-        let slider = this.GetControl "N" :> Slider
+        let slider = this.GetControl "SliderN" :> Slider
         let n = slider.Value |> int
 
         if n <= 1 then

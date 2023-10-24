@@ -12,10 +12,11 @@
         <vm:MainViewModel />
     </Design.DataContext>
     <StackPanel>
-        <Label Content="{Binding #N.Value}"></Label>
-        <Slider Name="N" Minimum="2" Maximum="6" IsSnapToTickEnabled="True" TickFrequency="1" 
+        <Label Content="{Binding #SliderN.Value}"></Label>
+        <Slider Name="SliderN" Minimum="2" Maximum="6" IsSnapToTickEnabled="True" TickFrequency="1"
                 ValueChanged="Update"
-                Width="100" HorizontalAlignment="Left"></Slider>
+                Width="100" HorizontalAlignment="Left">
+        </Slider>
         <Grid Name="InputGrid">
         </Grid>
     </StackPanel>
