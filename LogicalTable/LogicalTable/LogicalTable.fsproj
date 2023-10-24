@@ -9,12 +9,13 @@
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
-
+    
     <ItemGroup>
+        <Compile Include="Types\Ternary.fs" />
         <Compile Include="ViewModels\ViewModelBase.fs"/>
         <Compile Include="ViewModels\MainViewModel.fs"/>
         <Compile Include="Views\MainWindow.axaml.fs"/>
-        <Compile Include="Views\MainView.axaml.fs"/>
+        <Compile Include="Views\InputList.fs" />
         <Compile Include="ViewLocator.fs"/>
         <Compile Include="App.axaml.fs"/>
     </ItemGroup>
