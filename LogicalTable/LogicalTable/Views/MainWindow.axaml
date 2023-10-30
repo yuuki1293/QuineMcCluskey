@@ -6,5 +6,11 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="LogicalTable.Views.MainWindow"
         Title="LogicalTable">
-        <views:InputList Digit="4"/>
+    <StackPanel>
+        <Label Content="{Binding #SliderN.Value}" />
+        <Slider Name="SliderN" Minimum="2" Maximum="6" IsSnapToTickEnabled="True" TickFrequency="1"
+                Width="100" HorizontalAlignment="Left">
+        </Slider>
+        <views:InputList Digit="{Binding #SliderN.Value}" />
+    </StackPanel>
 </Window>

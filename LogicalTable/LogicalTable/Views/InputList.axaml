@@ -11,13 +11,6 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.fs) -->
         <vm:MainViewModel />
     </Design.DataContext>
-    <StackPanel>
-        <Label Content="{Binding #SliderN.Value}" />
-        <Slider Name="SliderN" Minimum="2" Maximum="6" IsSnapToTickEnabled="True" TickFrequency="1"
-                ValueChanged="Update"
-                Width="100" HorizontalAlignment="Left">
-        </Slider>
-        <Grid Name="InputGrid">
-        </Grid>
-    </StackPanel>
+    <Grid Name="InputGrid">
+    </Grid>
 </UserControl>
