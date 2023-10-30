@@ -5,7 +5,6 @@
         xmlns:views="clr-namespace:LogicalTable.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="LogicalTable.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
         Title="LogicalTable">
-        <views:MainView />
+        <views:InputList Digit="4"/>
 </Window>

@@ -14,8 +14,9 @@
         <Compile Include="Types\Ternary.fs" />
         <Compile Include="ViewModels\ViewModelBase.fs"/>
         <Compile Include="ViewModels\MainViewModel.fs"/>
-        <Compile Include="Views\MainWindow.axaml.fs"/>
-        <Compile Include="Views\InputList.fs" />
+        <Compile Include="Views\InputList.axml.fs" />
+        <Compile Include="Views\OutputList.axaml.fs" />
+        <Compile Include="Views\MainWindow.axaml.fs" />
         <Compile Include="ViewLocator.fs"/>
         <Compile Include="App.axaml.fs"/>
     </ItemGroup>

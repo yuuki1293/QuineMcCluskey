@@ -17,7 +17,7 @@ type App() =
         | :? IClassicDesktopStyleApplicationLifetime as desktopLifetime ->
             desktopLifetime.MainWindow <- MainWindow(DataContext = MainViewModel())
         | :? ISingleViewApplicationLifetime as singleViewLifetime ->
-            singleViewLifetime.MainView <- MainView(DataContext = MainViewModel())
+            singleViewLifetime.MainView <- InputList(DataContext = MainViewModel())
         | _ -> ()
 
         base.OnFrameworkInitializationCompleted()

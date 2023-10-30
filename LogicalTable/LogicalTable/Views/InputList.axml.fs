@@ -1,25 +1,28 @@
 namespace LogicalTable.Views
 
 open System
+open Avalonia
 open Avalonia.Controls
 open Avalonia.Controls.Primitives
 open Avalonia.Markup.Xaml
 
-type MainView() as this =
+type InputList() as this =
     inherit UserControl()
 
     let definition n =
         Seq.init n (fun _ -> "20") |> String.concat ","
 
-    let getBit i n digit = ($"%B{n}".PadLeft (digit, '0')).[i]
+    let getBit i n digit = $"%B{n}".PadLeft(digit, '0').[i]
+    
+    static let DigitProperty: StyledProperty<int> =
+        AvaloniaProperty.Register<InputList, int>(nameof Unchecked.defaultof<InputList>.Digit, defaultValue = 2)
 
     do this.InitializeComponent()
 
     member private this.InitializeComponent() = AvaloniaXamlLoader.Load(this)
 
     member this.Update(_: obj, _: RangeBaseValueChangedEventArgs) =
-        let slider = this.GetControl "SliderN" :> Slider
-        let n = slider.Value |> int
+        let n = this.Digit
 
         if n <= 1 then
             raise (Exception $"Unexpected n: {n}")
@@ -41,3 +44,14 @@ type MainView() as this =
                     label.SetValue(Grid.RowProperty, r) |> ignore
                     label.SetValue(Grid.ColumnProperty, c) |> ignore
                     grid.Children.Add label
+
+    member this.Digit
+        with get () = this.GetValue DigitProperty
+        and set value = this.SetValue(DigitProperty, value) |> ignore
+        
+    override this.OnPropertyChanged (change: AvaloniaPropertyChangedEventArgs)=
+        base.OnPropertyChanged(change)
+        if $"%A{change.Property}" = "Digit" then
+            change.Property.Equals DigitProperty |> ignore
+        if change.Property = DigitProperty then
+            this.Digit <- change.GetNewValue<int>()

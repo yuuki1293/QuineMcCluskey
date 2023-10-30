@@ -8,6 +8,7 @@
         <entry key="LogicalTable/LogicalTable/Views/InputList.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
         <entry key="LogicalTable/LogicalTable/Views/MainView.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
         <entry key="LogicalTable/LogicalTable/Views/MainWindow.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
+        <entry key="LogicalTable/LogicalTable/Views/OutputList.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
         <entry key="UI/App.axaml" value="UI/UI.fsproj" />
         <entry key="UI/MainWindow.axaml" value="UI/UI.fsproj" />
       </map>
