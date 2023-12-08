@@ -2,3 +2,5 @@
 
 type MainViewModel() =
     inherit ViewModelBase()
+    
+    member _.Digit = 2

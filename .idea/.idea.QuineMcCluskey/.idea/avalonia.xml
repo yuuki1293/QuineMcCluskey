@@ -5,10 +5,12 @@
       <map>
         <entry key="LogicalTable/LogicalTable/App.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
         <entry key="LogicalTable/LogicalTable/Controls/TernaryCheckBox.axaml" value="LogicalTable/LogicalTable.Browser/LogicalTable.Browser.fsproj" />
+        <entry key="LogicalTable/LogicalTable/MainWindow.axaml" value="LogicalTable/LogicalTable.Browser/LogicalTable.Browser.fsproj" />
         <entry key="LogicalTable/LogicalTable/Views/InputList.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
         <entry key="LogicalTable/LogicalTable/Views/MainView.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
         <entry key="LogicalTable/LogicalTable/Views/MainWindow.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
         <entry key="LogicalTable/LogicalTable/Views/OutputList.axaml" value="LogicalTable/LogicalTable.Desktop/LogicalTable.Desktop.fsproj" />
+        <entry key="LogicalTable/LogicalTable/Views/Slider.axaml" value="LogicalTable/LogicalTable.Browser/LogicalTable.Browser.fsproj" />
         <entry key="UI/App.axaml" value="UI/UI.fsproj" />
         <entry key="UI/MainWindow.axaml" value="UI/UI.fsproj" />
       </map>
